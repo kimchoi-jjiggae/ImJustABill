@@ -21,13 +21,14 @@ def build_index(input_file_path: str):
 
 
 #TODO: figure out how to integrate unstructured
+
+#TODO: figure out how to integrate unstructured
 def build_index_unstructured(input_file_path: str):
     UnstructuredReader = download_loader("UnstructuredReader", refresh_cache=True, use_gpt_index_import=True)
     loader = UnstructuredReader()
-    docs = loader.load_data(file=Path(input_file_path));
     documents = SimpleDirectoryReader(input_files=[input_file_path]).load_data()
     index = GPTVectorStoreIndex.from_documents(documents)
-    index.storage_context.persist(persist_dir=input_file_path+"_index")
+    index.storage_context.persist(persist_dir=input_file_path+"_index_unstructured")
 
+build_index_unstructured('./ira.pdf')
 
-build_index('./ira.pdf')
