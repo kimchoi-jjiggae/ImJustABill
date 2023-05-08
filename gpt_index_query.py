@@ -14,6 +14,9 @@ load_dotenv()
 #bring in the stored index as context
 
 location = "ira.pdf_index_unstructured"
+
+#initializing which llm to use
+
 llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-davinci-003", max_tokens=2000))
 service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
